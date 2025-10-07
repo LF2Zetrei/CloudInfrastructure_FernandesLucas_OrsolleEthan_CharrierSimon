@@ -3,7 +3,87 @@ import PokemonCard from "../components/PokemonCard";
 
 function PokemonList() {
   // Données test
-  const testPokemon = {
+  const E = {
+    id: 133,
+    name: "Évoli",
+    type1: "Normal",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png",
+    description:
+      "Ses multiples évolutions lui permettent de s’adapter à tout type de milieu naturel.",
+  };
+  const A = {
+    id: 134,
+    name: "Aquali",
+    type1: "Eau",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/134.png",
+    description:
+      "Il vit au bord de l’eau. Sa queue semblable à celle d’un poisson lui donne l’apparence d’une sirène.",
+  };
+  const V = {
+    id: 135,
+    name: "Voltali",
+    type1: "Électrik",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/135.png",
+    description:
+      "Sa glande enflammée chauffe l’air qu’il inspire. Il l’exhale ensuite sous forme de flamme atteignant les 1 700 °C.",
+  };
+  const P = {
+    id: 136,
+    name: "Pyroli",
+    type1: "Feu",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/136.png",
+    description:
+      "Il concentre la faible charge électrique générée par chacune de ses cellules pour projeter de puissants éclairs.",
+  };
+  const M = {
+    id: 196,
+    name: "Mentali",
+    type1: "Psy",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/196.png",
+    description:
+      "Quand il prédit la prochaine attaque de son adversaire, l’extrémité fourchue de sa queue frémit.",
+  };
+  const N = {
+    id: 197,
+    name: "Noctali",
+    type1: "Ténèbres",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/197.png",
+    description:
+      "Quand il s’expose aux ondes lunaires, ses anneaux brillent légèrement et il acquiert un mystérieux pouvoir.",
+  };
+  const Ph = {
+    id: 470,
+    name: "Phyllali",
+    type1: "Plante",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/470.png",
+    description:
+      "Un Phyllali qui dort par beau temps produit un air frais et pur par photosynthèse.",
+  };
+  const G = {
+    id: 471,
+    name: "Givrali",
+    type1: "Glace",
+    type2: null,
+    imageUrl:
+      "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/471.png",
+    description:
+      "Il peut contrôler la température de son corps à volonté et créer des cristaux de glace en gelant l’humidité de l’air.",
+  };
+  const Ny = {
     id: 700,
     name: "Nymphali",
     type1: "Fée",
@@ -11,8 +91,21 @@ function PokemonList() {
     imageUrl:
       "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/700.png",
     description:
-      "Ses antennes en forme de ruban émettent des ondes apaisantes en direction de ses adversaires et neutralisent toute hostilité. ",
+      "Ses antennes en forme de ruban émettent des ondes apaisantes en direction de ses adversaires et neutralisent toute hostilité.",
   };
+
+  const dex = [E, A, V, P, M, N, Ph, G, Ny];
+  const renderDex = dex.map((pokemon) => (
+    <PokemonCard
+      key={pokemon.id}
+      id={pokemon.id}
+      name={pokemon.name}
+      type1={pokemon.type1}
+      type2={pokemon.type2}
+      imageUrl={pokemon.imageUrl}
+      description={pokemon.description}
+    />
+  ));
 
   const listStyle = {
     display: "flex",
@@ -31,56 +124,7 @@ function PokemonList() {
     <div style={pageStyle}>
       <h1>Liste des Pokémons :</h1>
 
-      <div style={listStyle}>
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-        <PokemonCard
-          id={testPokemon.id}
-          name={testPokemon.name}
-          type1={testPokemon.type1}
-          type2={testPokemon.type2}
-          imageUrl={testPokemon.imageUrl}
-          description={testPokemon.description}
-        />
-      </div>
+      <div style={listStyle}>{renderDex}</div>
     </div>
   );
 }
