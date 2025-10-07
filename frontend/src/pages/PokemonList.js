@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
 function PokemonList() {
@@ -31,7 +31,7 @@ function PokemonList() {
     imageUrl:
       "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/135.png",
     description:
-      "Sa glande enflammée chauffe l’air qu’il inspire. Il l’exhale ensuite sous forme de flamme atteignant les 1 700 °C.",
+      "Il concentre la faible charge électrique générée par chacune de ses cellules pour projeter de puissants éclairs.",
   };
   const P = {
     id: 136,
@@ -41,7 +41,7 @@ function PokemonList() {
     imageUrl:
       "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/136.png",
     description:
-      "Il concentre la faible charge électrique générée par chacune de ses cellules pour projeter de puissants éclairs.",
+      "Sa glande enflammée chauffe l’air qu’il inspire. Il l’exhale ensuite sous forme de flamme atteignant les 1 700 °C.",
   };
   const M = {
     id: 196,
@@ -94,8 +94,24 @@ function PokemonList() {
       "Ses antennes en forme de ruban émettent des ondes apaisantes en direction de ses adversaires et neutralisent toute hostilité.",
   };
 
-  const dex = [E, A, V, P, M, N, Ph, G, Ny];
-  const renderDex = dex.map((pokemon) => (
+  const dex = [Ny, E, A, V, P, M, N, Ph, G];
+
+  const [sortKey, setSortKey] = useState("id");
+
+  // Fonction de tri
+  const sortPkmn = (a, b) => {
+    if (sortKey === "id") {
+      return a.id - b.id;
+    }
+    if (sortKey === "name") {
+      return a.name.localeCompare(b.name);
+    }
+    return 0;
+  };
+
+  const sortedList = dex.sort(sortPkmn);
+
+  const renderDex = sortedList.map((pokemon) => (
     <PokemonCard
       key={pokemon.id}
       id={pokemon.id}
@@ -103,7 +119,6 @@ function PokemonList() {
       type1={pokemon.type1}
       type2={pokemon.type2}
       imageUrl={pokemon.imageUrl}
-      description={pokemon.description}
     />
   ));
 
@@ -112,6 +127,8 @@ function PokemonList() {
     flexDirection: "row",
     padding: "20px",
     flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   const pageStyle = {
@@ -122,6 +139,14 @@ function PokemonList() {
 
   return (
     <div style={pageStyle}>
+      <div>
+        <span>Trier par :</span>
+        <select value={sortKey} onChange={(e) => setSortKey(e.target.value)}>
+          <option value="id">ID</option>
+          <option value="name">Nom</option>
+        </select>
+      </div>
+
       <h1>Liste des Pokémons :</h1>
 
       <div style={listStyle}>{renderDex}</div>
