@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PokemonCard from "../components/PokemonCard";
+import filterIcon from "../img/filter.png";
 
 function PokemonList() {
   // Données test
@@ -97,6 +98,8 @@ function PokemonList() {
   const dex = [Ny, E, A, V, P, M, N, Ph, G];
 
   const [sortKey, setSortKey] = useState("id");
+  const [selectedLetter, setSelectedLetter] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
 
   // Fonction de tri
   const sortPkmn = (a, b) => {
@@ -109,7 +112,18 @@ function PokemonList() {
     return 0;
   };
 
-  const sortedList = dex.sort(sortPkmn);
+  // Fonction de filtre
+  const filteredList = dex.filter((pokemon) => {
+    if (!selectedLetter) {
+      return true;
+    } else {
+      return pokemon.name.toUpperCase().startsWith(selectedLetter);
+    }
+  });
+
+  const sortedList = [...filteredList].sort(sortPkmn);
+
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   const renderDex = sortedList.map((pokemon) => (
     <PokemonCard
@@ -121,6 +135,30 @@ function PokemonList() {
       imageUrl={pokemon.imageUrl}
     />
   ));
+
+  const letterBarStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    padding: "10px 0",
+    maxWidth: "800px",
+    margin: "0 auto 20px",
+    borderBottom: "1px solid #ccc",
+  };
+
+  // Style pour chaque bouton de lettre
+  const letterButtonStyle = (letter) => ({
+    padding: "5px 8px",
+    margin: "3px",
+    cursor: "pointer",
+    backgroundColor: selectedLetter === letter ? "#007bff" : "transparent",
+    color: selectedLetter === letter ? "white" : "black",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    fontWeight: "bold",
+    minWidth: "30px",
+    textAlign: "center",
+  });
 
   const listStyle = {
     display: "flex",
@@ -137,17 +175,90 @@ function PokemonList() {
     alignItems: "center",
   };
 
+  const headerStyle = {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+
+  const sortButtonStyle = {
+    padding: "5px",
+  };
+
   return (
     <div style={pageStyle}>
-      <div>
-        <span>Trier par :</span>
-        <select value={sortKey} onChange={(e) => setSortKey(e.target.value)}>
-          <option value="id">ID</option>
-          <option value="name">Nom</option>
-        </select>
-      </div>
+      <div style={headerStyle}>
+        <h1>Pokedex</h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            width: "50%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              role="img"
+              aria-label="Trier par"
+              style={{
+                fontSize: "2em",
+                marginRight: "10px",
+                cursor: "default",
+              }}
+            >
+              ⇅
+            </span>
+            <select
+              value={sortKey}
+              onChange={(e) => setSortKey(e.target.value)}
+              style={sortButtonStyle}
+            >
+              <option value="id">Num. Pokédex</option>
+              <option value="name">Nom</option>
+            </select>
+          </div>
 
-      <h1>Liste des Pokémons :</h1>
+          <button onClick={() => setShowFilters(!showFilters)}>
+            <img src={filterIcon} style={{ width: "50px" }}></img>
+          </button>
+        </div>
+      </div>
+      {showFilters && (
+        <div style={letterBarStyle}>
+          <div
+            onClick={() => setSelectedLetter(null)}
+            style={letterButtonStyle(null)}
+          >
+            TOUS
+          </div>
+          {alphabet.map((letter) => {
+            const isLetterUsed = dex.some((p) =>
+              p.name.toUpperCase().startsWith(letter)
+            );
+            return (
+              <div
+                key={letter}
+                onClick={() => isLetterUsed && setSelectedLetter(letter)}
+                style={{
+                  ...letterButtonStyle(letter),
+                  opacity: isLetterUsed ? 1 : 0.4, // Griser les lettres non utilisées
+                  cursor: isLetterUsed ? "pointer" : "default",
+                }}
+              >
+                {letter}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <div style={listStyle}>{renderDex}</div>
     </div>
