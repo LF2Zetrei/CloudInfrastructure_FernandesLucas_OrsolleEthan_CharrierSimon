@@ -1,12 +1,11 @@
 package com.pokedex;
 
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class PokemonAPIService {
@@ -18,29 +17,31 @@ public class PokemonAPIService {
     public PokemonAPIService(PokemonRepository repository) {
         this.repository = repository;
     }
-
+    
     @SuppressWarnings("unchecked")
     public void fetchAndSavePokemons() {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            PokemonResponse response = restTemplate.getForObject(API_URL, PokemonResponse.class);
+            PokemonResponse[] response = restTemplate.getForObject(API_URL, PokemonResponse[].class);
 
-            if (response == null) return;
+            for(PokemonResponse poke : response) {
+                Pokemon pokemon = new Pokemon();
+                pokemon.setName(poke.getName());
+                pokemon.setImage(poke.getImage());
+                pokemon.setAttack(poke.getStats().getAttack());
+                pokemon.setDefence(poke.getStats().getDefense());
+                pokemon.setHP(poke.getStats().getHp());
+                pokemon.setType1(String.valueOf(poke.getApiTypes().get(0)));
 
-            Pokemon pokemon = null;
-            for (PokemonResponse.PokemonResult p : response.getResults()) {
-                System.out.println(pokemon);
-                pokemon = new Pokemon();
-                pokemon.setName((String) p.getName());
-                pokemon.setType1(p.getTypes().get(0).get("name"));
-                pokemon.setType2(p.getTypes().get(1).get("name"));
-                pokemon.setAttack(p.getStats().get(2).get("attack"));
-                pokemon.setDefence(p.getStats().get(3).get("defense"));
-                pokemon.setHp(p.getStats().get(0).get("HP"));
+                List<Type> types = poke.getApiTypes();
+                pokemon.setType1(types.get(0).getName());
+                if (types.size() > 1) {
+                    pokemon.setType2(types.get(1).getName());
+                }
 
+                repository.save(pokemon);
             }
 
-            repository.save(pokemon);
             System.out.println("✅ Données Pokémon récupérées et enregistrées !");
         } catch (Exception e) {
             System.err.println("❌ Erreur lors de la récupération de l'API Pokémon : " + e.getMessage());

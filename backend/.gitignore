@@ -16,7 +16,6 @@ build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-pokedex-474408-394177a21081.json
 
 ### IntelliJ IDEA ###
 .idea

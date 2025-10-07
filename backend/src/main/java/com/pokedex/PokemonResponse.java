@@ -1,65 +1,54 @@
 package com.pokedex;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class PokemonResponse {
-    private int count;
-    private String next;
-    private String previous;
-    private List<PokemonResult> results;
 
-    public List<PokemonResult> getResults() {
-        return results;
+    private String name;
+    private String image;
+    private List<Type> apiTypes;
+    private Stats stats;
+    private List<Evolution> apiEvolutions;
+
+    public String getName() {
+        return name;
     }
 
-    public static class PokemonResult {
-        private int id;
-        private String name;
-        private String imageUrl;
-        private List<Map<String, Integer>> stats;
-        private List<Map<String, String>> types;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public String getImage() {
+        return image;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public List<Type> getApiTypes() {
+        return apiTypes;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public void setApiTypes(List<Type> apiTypes) {
+        this.apiTypes = apiTypes;
+    }
 
-        public String getImageUrl() {
-            return imageUrl;
-        }
+    public Stats getStats() {
+        return stats;
+    }
 
-        public void setImageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
-        }
+    public void setStats(Stats apiStats) {
+        this.stats = apiStats;
+    }
 
-        public List<Map<String, Integer>> getStats() {
-            return stats;
-        }
+    public List<Evolution> getApiEvolutions() {
+        return apiEvolutions;
+    }
 
-        public void setStats(List<Map<String, Integer>> stats) {
-            this.stats = stats;
-        }
-
-        public List<Map<String, String>> getTypes() {
-            return types;
-        }
-
-        public void setTypes(List<Map<String, String>> types) {
-            this.types = types;
-        }
+    public void setApiEvolutions(List<Evolution> apiEvolutions) {
+        this.apiEvolutions = apiEvolutions;
     }
 }

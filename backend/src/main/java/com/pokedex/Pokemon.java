@@ -12,19 +12,61 @@ import jakarta.persistence.Id;
 public class Pokemon {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
+    private String image;
     private String type1;
     private String type2;
-    private int hp;
+    private int HP;
     private int attack;
     private int defence;
 
-    public Long getId() {
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,41 +78,12 @@ public class Pokemon {
         this.name = name;
     }
 
-    public String getType1() {
-        return type1;
+    public String getImage() {
+        return image;
     }
 
-    public void setType1(String type) {
-        this.type1 = type;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getType2() {
-        return type1;
-    }
-
-    public void setType2(String type) { this.type2 = type; }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public void setAttack(int attack) {
-        this.attack = attack;
-    }
-
-    public int getDefence() {
-        return defence;
-    }
-
-    public void setDefence(int defence) {
-        this.defence = defence;
-    }
 }
