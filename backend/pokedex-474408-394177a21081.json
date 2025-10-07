@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "pokedex-474408",
+  "private_key_id": "394177a2108193d1627ead67d69ff8c5fce2a9c7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCqR+OxOa4NZOpU\n0fMlCuOllL+1EE8qbPiSUzAM1FWFKX2daBcEoUDak+kFJpb3jegMl1a+Gb//7WvU\nHO3u9i63wRiKdEQNT7FMHsecJNfypvdiKvoYV8q9G+6Enxa1vnxYQpENNQYSBvHO\nY51pk5br3TaLzSolQkvnyuHF2Fb9FJSniKpObH5Ed8/zcifE8AMXTWrOK2ElVDmN\nS0uzAe1pHxGsiYXRJbMRQfL0m63T5IlOxI4yESSHa2KqgLB7JLvRTqJjtG4qiJS1\n78of5ujbqubz4HALZxoA/aW70OsIPg5qHGmwpa7GhTO/OOhfSb6tF/1BK7R7DZjP\ncSqu43hNAgMBAAECggEADfaDJz8xlIuX44irxXfVHvjJl5FUzIfPAkCsCgFHWfoD\nAOtOJ+UJKmNCkleNvZL3WkD2rfPymIvhca1FnXi2b/73gjLyeZz1TuafO6CRzKYA\nVx5rD5/zUfp+XoWlGRYboCklN84HR2cmYOQuPkAJ+iFTnbcfI5sCGmm6hbyttWbe\nVK2PAsjSMpjGNdUsNqO1cJiVN9onsyPFfUVBKak3HuI1gcNgbNXXxcsJjVrpJSY+\nJQdi0G+2mHErS3o4g7sXmpsAGzig/8dNuKfsRyuYAP/PcmYQx5+BWdFhvt2ifMP1\nBqQ7z8oJUMKn5oVvZE1KnNLrQ6Ya1VmWlWzd5kdOiQKBgQDdeTG+TwHDjfOEnmyg\nFh3YutCusjgJOqnw/xDRpU5nXG/4Kz8Hfo7tfxP8TUq0rzhhDe5H7Nph7KCHqqAS\nXeCIiwlFpax8nrw/KLimyWdGvNxu80NzWDF3uJ5hKxqNRtSLdjNssck87QOrwvtY\nqhZJIsFWUudq3DTn0HWAxdhfKwKBgQDE06T3OUGGPrYt3RoC+c4Qn3aladGjT8aM\nuMe/LbH2Ru2UmYss2ogSF89K87QhD1xBoXd8G76qlpyQp8XAOXxxgKUUCb0MTG1G\nZ7HOTUNdTfnMBhEqKQyesc4XfTX345gcOClGvHZzDNwa105VabY55MZ/vwqHYjt+\nQyE70JiKZwKBgQCbU2NCsFBxYP339dADGl/GX4b57n4EYwNKxOh7z+7D6P2SVGo5\nDFabVDOlEGQjgnwM/WMvSHsEkJspas4m83YE7VYMZZwqLn2h4iJWvwvSfaQvoCaf\nH6xZ5b4WMc/GY3Wvda+tPKcBNs0LSo1S6r8Eff6QV0Z8GIJ2TioKrTcJzwKBgHDN\nu2XU8rC1kEOIzDeYY3kzaxQyKWundOuBmzj+P1geHltkBFeYhxOXgb47Hak03HLg\nz1HZtNSfrOtavAMG70M9r15klmxOAPKwyz6pGUqIPfmoIH5BOHJbBPqBUETZs3u4\n1C8uI9ScMilP7B0XkNBtRTZBjw84RVB/uLRHQKVRAoGBAIIjZ/FAz9tmMncWEiVJ\nv/lRQgewEnA5kLg2Qy0wBa0oWGYTa4muTwTeDiKas1Wd84VN4ZXqK9n4WhLl6jKL\nNZGm+bOxq6io2IJ29WnZo/Ipam3ssGgQk80qRLQz1kz48yfrpMMGcfn5nLRjFHTw\nf4+9xMRR0GhzaXHkZdo5j8I4\n-----END PRIVATE KEY-----\n",
+  "client_email": "spring-boot-app@pokedex-474408.iam.gserviceaccount.com",
+  "client_id": "100509636875409239824",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/spring-boot-app%40pokedex-474408.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
