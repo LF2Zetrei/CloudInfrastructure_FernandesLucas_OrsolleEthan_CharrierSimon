@@ -16,7 +16,9 @@ COPY . .
 RUN chmod +x gradlew
 
 # On compile l'applis
-RUN ./gradlew bootJar --no-daemon
+RUN ./gradlew clean build --no-daemon
+
+RUN ls -R /app/build
 
 # On passe à une nouvelle image, celle qui recevra notre bdd
 FROM eclipse-temurin:17-jre-alpine
@@ -27,7 +29,7 @@ WORKDIR /app
 EXPOSE 8080
 
 # On récupère le jar compilé
-COPY --from=builder /app/build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/build/*.jar app.jar
 
 # On démarre ensuite l'application
 CMD ["java", "-jar", "app.jar"]
