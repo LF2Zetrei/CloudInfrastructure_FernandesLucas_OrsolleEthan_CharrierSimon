@@ -1,35 +1,29 @@
-# On va proceder en multi-stage build.
-# Cela permettra à l'image finale de ne contenir aucune trace
-# des compilateurs et outils de dev, la rendant plus légère.
-
-# Etape 1 : le build
-# On part de l'image officielle de gradle
+# Étape 1 : Build du JAR avec Gradle
 FROM gradle:7.6-jdk17-alpine AS builder
-
-# On se place dans le répertoire de travail
 WORKDIR /app
 
-# On copie notre backend dans le conteneur
+# Copier uniquement les fichiers de configuration pour bénéficier du cache Docker
+COPY build.gradle settings.gradle gradlew ./
+COPY gradle ./gradle
+
+# Télécharger les dépendances (meilleur cache)
+RUN ./gradlew dependencies --no-daemon || true
+
+# Copier le reste du code source
 COPY . .
 
-# On rend le script de compilation executable
-RUN chmod +x gradlew
+# Compiler sans les tests
+RUN ./gradlew clean bootJar -x test --no-daemon
 
-# On compile l'applis
-RUN ./gradlew clean build --no-daemon
-
-RUN ls -R /app/build
-
-# On passe à une nouvelle image, celle qui recevra notre bdd
+# Étape 2 : Image d'exécution
 FROM eclipse-temurin:17-jre-alpine
-
 WORKDIR /app
 
-# On expose son port
+# Exposer le port que Spring Boot utilise par défaut
 EXPOSE 8080
 
-# On récupère le jar compilé
-COPY --from=builder /app/build/*.jar app.jar
+# Copier le jar compilé depuis l'étape précédente
+COPY --from=builder /app/build/libs/*.jar app.jar
 
-# On démarre ensuite l'application
-CMD ["java", "-jar", "app.jar"]
+# Commande de démarrage
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
