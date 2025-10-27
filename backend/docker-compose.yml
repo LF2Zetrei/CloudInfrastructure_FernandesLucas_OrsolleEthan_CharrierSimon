@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  cloudsql-proxy:
+    image: gcr.io/cloudsql-docker/gce-proxy:1.33.2
+    container_name: cloudsql-proxy
+    command: >
+      /cloud_sql_proxy
+      -instances=pokedex-474408:europe-west1:poke-instance=tcp:3306
+      -credential_file=/secrets/service-account.json
+    volumes:
+      - ./secrets/service-account.json:/secrets/service-account.json:ro
+    restart: unless-stopped
+
+  backend:
+    build: .
+    container_name: backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://cloudsql-proxy:3306/pokedb?useSSL=false&serverTimezone=UTC
+
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: PokeESL10!
+    depends_on:
+      - cloudsql-proxy
+    restart: unless-stopped

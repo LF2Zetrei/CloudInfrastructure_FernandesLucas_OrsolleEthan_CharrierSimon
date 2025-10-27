@@ -29,7 +29,7 @@ dependencies {
 
 
     // Google Cloud SQL Socket Factory (si utilisé)
-    implementation 'com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.9.0'
+    //implementation 'com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.9.0'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
