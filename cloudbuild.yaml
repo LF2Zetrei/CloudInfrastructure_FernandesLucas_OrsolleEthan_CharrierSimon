@@ -1,0 +1,73 @@
+steps:
+  # 1️⃣ Build image backend
+  - name: "gcr.io/cloud-builders/docker"
+    dir: "backend"
+    args:
+      [
+        "build",
+        "-t",
+        "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/backend",
+        ".",
+      ]
+
+  # 2️⃣ Push image backend
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/backend",
+      ]
+
+  # 3️⃣ Déploiement du backend sur Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud run deploy backend \
+          --image europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/backend \
+          --region europe-west1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --add-cloudsql-instances pokedex-474408:europe-west1:poke-instance \
+          --set-env-vars SPRING_DATASOURCE_URL="jdbc:mysql:///pokedb?socketFactory=com.google.cloud.sql.mysql.SocketFactory&cloudSqlInstance=pokedex-474408:europe-west1:poke-instance" \
+          --set-env-vars SPRING_DATASOURCE_USERNAME="root" \
+          --set-env-vars SPRING_DATASOURCE_PASSWORD="PokeESL10!" \
+          --set-env-vars SPRING_DATASOURCE_DRIVER_CLASS_NAME="com.mysql.cj.jdbc.Driver" \
+          --port=8080
+
+  # 4️⃣ Build image frontend (React)
+  - name: "gcr.io/cloud-builders/docker"
+    dir: "frontend"
+    args:
+      [
+        "build",
+        "-t",
+        "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/frontend",
+        ".",
+      ]
+
+  # 5️⃣ Push image frontend
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/frontend",
+      ]
+
+  # 6️⃣ Déploiement du frontend sur Cloud Run (port 80)
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud run deploy frontend \
+          --image europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/frontend \
+          --region europe-west1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --port=80
+
+images:
+  - "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/backend"
+  - "europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/frontend"
