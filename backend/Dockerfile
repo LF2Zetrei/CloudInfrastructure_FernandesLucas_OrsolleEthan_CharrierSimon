@@ -13,6 +13,6 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 EXPOSE 8080
 
-COPY --from=builder /app/build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
