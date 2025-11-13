@@ -29,6 +29,7 @@ steps:
       - |
         gcloud run deploy backend \
           --image europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/backend \
+          --service-account pokedex-service-account@pokedex-474408.iam.gserviceaccount.com \
           --region europe-west1 \
           --platform managed \
           --allow-unauthenticated \
