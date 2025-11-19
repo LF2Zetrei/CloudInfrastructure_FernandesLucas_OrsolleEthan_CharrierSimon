@@ -69,6 +69,7 @@ steps:
         gcloud run deploy frontend \
           --image europe-west1-docker.pkg.dev/pokedex-474408/pokedex-repo/frontend \
           --region europe-west1 \
+          --service-account pokedex-service-account@pokedex-474408.iam.gserviceaccount.com \
           --platform managed \
           --allow-unauthenticated \
           --port=80
