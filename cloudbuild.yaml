@@ -34,7 +34,8 @@ steps:
           --platform managed \
           --allow-unauthenticated \
           --add-cloudsql-instances pokedex-474408:europe-west1:poke-instance \
-          --set-env-vars SPRING_DATASOURCE_URL="jdbc:mysql:///pokedb?socketFactory=com.google.cloud.sql.mysql.SocketFactory&cloudSqlInstance=pokedex-474408:europe-west1:poke-instance" \
+          --set-env-vars SPRING_CLOUD_GCP_SQL_INSTANCE_CONNECTION_NAME="pokedex-474408:europe-west1:poke-instance" \
+          --set-env-vars SPRING_CLOUD_GCP_SQL_DATABASE_NAME="pokedb" \
           --set-env-vars SPRING_DATASOURCE_USERNAME="root" \
           --set-env-vars SPRING_DATASOURCE_PASSWORD="PokeESL10!" \
           --set-env-vars SPRING_DATASOURCE_DRIVER_CLASS_NAME="com.mysql.cj.jdbc.Driver" \
