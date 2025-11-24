@@ -49,7 +49,6 @@ function LetterCard(props) {
     flexDirection: "column",
     alignItems: "center",
     margin: "10px",
-    backgroundColor: "#e1e1e1",
     borderRadius: "15px",
     paddingTop: "15px",
 

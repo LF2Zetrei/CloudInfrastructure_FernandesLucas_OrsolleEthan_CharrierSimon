@@ -79,7 +79,11 @@ function PokeCard(props) {
     <div style={cardStyle}>
       <div style={avatarStyle}>
         <p style={idStyle}>#{id}</p>
-        <img src={props.pokemon.imageUrl} style={imgStyle}></img>
+        <img
+          src={props.pokemon.imageUrl}
+          alt={props.pokemon.name}
+          style={imgStyle}
+        ></img>
       </div>
 
       <p>{props.pokemon.name}</p>

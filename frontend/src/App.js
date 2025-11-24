@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PokeCard from "./components/PokeCard";
 import Header from "./components/Header";
 import { normalizeString } from "./utils/StringUtils";

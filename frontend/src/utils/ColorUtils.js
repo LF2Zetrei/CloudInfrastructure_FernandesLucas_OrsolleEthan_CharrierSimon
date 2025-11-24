@@ -4,7 +4,6 @@ export const darkenHexColor = (hex, percent) => {
   }
 
   let color = hex.startsWith("#") ? hex.slice(1) : hex;
-  16;
 
   let num = parseInt(color, 16);
   let R = num >> 16;
