@@ -10,7 +10,6 @@ public class PokemonResponse {
     private String image;
     private List<Type> apiTypes;
     private Stats stats;
-    private List<Evolution> apiEvolutions;
 
     public String getName() {
         return name;
@@ -42,13 +41,5 @@ public class PokemonResponse {
 
     public void setStats(Stats apiStats) {
         this.stats = apiStats;
-    }
-
-    public List<Evolution> getApiEvolutions() {
-        return apiEvolutions;
-    }
-
-    public void setApiEvolutions(List<Evolution> apiEvolutions) {
-        this.apiEvolutions = apiEvolutions;
     }
 }
