@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pokemons")
+@CrossOrigin(origins = "https://frontend-506788352665.europe-west1.run.app/")
 public class PokemonController {
     @Autowired
     private PokemonRepository pokemonRepository;
