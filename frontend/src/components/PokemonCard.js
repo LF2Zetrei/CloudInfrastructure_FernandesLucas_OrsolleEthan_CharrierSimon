@@ -21,7 +21,7 @@ const TYPE_COLORS = {
   FÉE: "#eb8ee5",
 };
 
-function PokemonCard({ id, name, type1, type2, imageUrl }) {
+function PokemonCard({ id, name, type1, type2, image }) {
   const primaryType = type1 ? type1.toUpperCase() : "NORMAL";
   const cardColor = TYPE_COLORS[primaryType] || TYPE_COLORS["NORMAL"];
 
@@ -72,7 +72,7 @@ function PokemonCard({ id, name, type1, type2, imageUrl }) {
         <span style={{ fontWeight: "bold", fontSize: "1.5em" }}>{name}</span>
         <span>{displayTypes}</span>
       </div>
-      <img src={imageUrl} style={imgStyle}></img>
+      <img src={image} style={imgStyle}></img>
       <span style={idStyle}>#{id}</span>
     </div>
   );

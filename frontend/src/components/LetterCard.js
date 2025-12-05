@@ -40,7 +40,7 @@ function LetterCard(props) {
     Vol: Vol,
   };
 
-  const imageUrl = props.isTypeCard ? typeImageMap[props.letter] : null;
+  const image = props.isTypeCard ? typeImageMap[props.letter] : null;
 
   const cardStyle = {
     width: "250px",
@@ -71,8 +71,8 @@ function LetterCard(props) {
   };
   return (
     <div style={cardStyle} onClick={handleClick}>
-      {imageUrl ? (
-        <img src={imageUrl} alt={`Type ${props.letter}`} style={imgStyle} />
+      {image ? (
+        <img src={image} alt={`Type ${props.letter}`} style={imgStyle} />
       ) : (
         <p style={textStyle}>{props.letter}</p>
       )}
