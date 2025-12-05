@@ -115,15 +115,18 @@ async function fetchApi() {
     );
 
     if (!response.ok) {
+      console.log("Error with response !");
       return [E, A, V, P, M, N, Ph, G, Ny, F];
     }
     const data = await response.json();
 
     if (!data) {
+      console.log("Error with JSON Formatage");
       return [E, A, V, P, M, N, Ph, G, Ny, F];
     }
     return data;
   } catch (e) {
+    console.log("Fetching error !");
     return [E, A, V, P, M, N, Ph, G, Ny, F];
   }
 }
