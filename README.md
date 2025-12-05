@@ -8,7 +8,7 @@ Ce projet à pour but de prendre une application et de la rendre disponible sur 
 
 - [Lucas Fernandes](https://github.com/LF2Zetrei)
 - [Ethan Orsolle](https://github.com/eorstyb)
-- [Simon Charrier](https://github.com/LF2Zetrei)
+- [Simon Charrier](https://github.com/TrappyMadz)
 
 
 ## Documentation
