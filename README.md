@@ -64,7 +64,7 @@ Le document que vous êtes en train de lire ainsi que les captures d'écran et l
 Nous utilisons deux machines virtuelles communiquant entre elles. Cependant, le frontend ne pèse presque rien et est payé à la requête. De même pour la base de donnée, dont on a désactivé les back-up car il n'est pas prévue de la rendre modifiable. Pour chaque utilisation, le frontend fait une unique requête au backend, donnant un coût très faible. De plus, seul les rôles et machines virtuelles utiles ont été laissé, les autres outils crées à des fins de tests ont été supprimmés par nos soins.
 
 ### Innovation :
-Avant déploiement, des tests ES lint sont effectués. Si ils ne passent pas, le build échou. De plus, il est toujours possible de revenir à une version précédente si il y a un problème via un rollback.
+Avant déploiement, des tests ES lint sont effectués. Si ils ne passent pas, le build échou.
 
 ## Captures d'écran
 
